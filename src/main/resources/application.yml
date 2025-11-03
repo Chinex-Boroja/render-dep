@@ -1,0 +1,25 @@
+server:
+  port: ${PORT:8080}
+  error:
+    include-stacktrace: never
+
+spring:
+  datasource:
+    url: ${DB_URL}
+#    username: ${USERNAME}
+#    password: ${PASSWORD}
+  jpa:
+    hibernate:
+      ddl-auto: none
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+
+  flyway:
+    enabled: true
+    baseline-on-migrate: true
+
+security:
+  jwt:
+    secret-key: ${JWT_SECRET}
+    expiration-time: ${JWT_EXPIRATION}
