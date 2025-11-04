@@ -1,7 +1,7 @@
 services:
   - type: web
     name: my-spring-app
-    env: java
+    runtime: java
     region: oregon  # Change to your preferred region
     plan: free
     buildCommand: ./mvnw clean install -DskipTests

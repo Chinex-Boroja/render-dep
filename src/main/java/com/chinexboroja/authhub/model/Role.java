@@ -15,8 +15,8 @@ import java.util.UUID;
 public class Role {
 
     @Id
-    @GeneratedValue
-    @Column(name = "id", columnDefinition = "BINARY(16)")
+    @GeneratedValue(strategy = GenerationType.UUID)
+    @Column(name = "id")
     private UUID id;
 
     @Column(name = "name", unique = true, nullable = false)
@@ -31,4 +31,14 @@ public class Role {
 
     @Column(name = "updated_at")
     private Instant updatedAt;
+
+    @PrePersist
+    protected void onCreate() {
+        createdAt = Instant.now();
+    }
+
+    @PreUpdate
+    protected void onUpdate() {
+        updatedAt = Instant.now();
+    }
 }

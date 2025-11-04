@@ -1,3 +1,0 @@
-ALTER TABLE users ADD COLUMN role_id VARCHAR(200) NOT NULL;
-
-

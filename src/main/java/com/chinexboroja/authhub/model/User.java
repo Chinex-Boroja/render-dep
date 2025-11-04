@@ -19,8 +19,8 @@ import java.util.UUID;
 public class User implements UserDetails {
 
     @Id
-    @GeneratedValue
-    @Column(name = "id", columnDefinition = "BINARY(16)")
+    @GeneratedValue(strategy = GenerationType.UUID)
+    @Column(name = "id")
     private UUID id;
 
     @Column(nullable = false, name = "full_name")
@@ -76,5 +76,15 @@ public class User implements UserDetails {
     @Override
     public boolean isEnabled() {
         return true;
+    }
+
+    @PrePersist
+    protected void onCreate() {
+        createdAt = Instant.now();
+    }
+
+    @PreUpdate
+    protected void onUpdate() {
+        updatedAt = Instant.now();
     }
 }
